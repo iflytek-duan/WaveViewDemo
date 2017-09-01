@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="XWaveView">
+        <!--圆边线颜色-->
+        <attr name="borderColor" format="color"/>
+        <!--水波纹颜色-->
+        <attr name="waveColor" format="color"/>
+        <!--进度文本颜色-->
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
+
+</resources>
