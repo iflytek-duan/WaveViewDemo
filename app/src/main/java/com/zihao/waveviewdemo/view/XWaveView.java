@@ -1,6 +1,7 @@
 package com.zihao.waveviewdemo.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,8 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.zihao.waveviewdemo.R;
 
 /**
  * ClassName：XWaveView
@@ -50,6 +53,9 @@ public class XWaveView extends View {
     private Paint circlePaint;// 绘制圆环的画笔
     private Paint wavePaint;// 绘制水波纹的画笔
     private Paint textPaint;// 绘制文本的画笔
+    private int borderColor;
+    private int waveColor;
+    private int textColor;
 
     // 绘制水波纹相关
     private RectF circleRectF;// 内圆所在的矩形
@@ -64,26 +70,54 @@ public class XWaveView extends View {
     private boolean isDetached = false;
 
     public XWaveView(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public XWaveView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public XWaveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs);
     }
 
     /**
      * 这里提前进行一些内容的初始化操作
+     *
+     * @param context context
+     * @param attrs   attrs
      */
-    private void init() {
+    private void init(Context context, AttributeSet attrs) {
+        initDefaultAttrs();
+        initCustomAttrs(context, attrs);
         initPaint();
         autoRefreshView();
+    }
+
+    /**
+     * 初始化默认属性
+     */
+    private void initDefaultAttrs() {
+        borderColor = Color.parseColor("#00FF00");
+        waveColor = Color.parseColor("#00FF00");
+        textColor = Color.parseColor("#008B00");
+    }
+
+    /**
+     * 初始化自定义属性
+     *
+     * @param context context
+     * @param attrs   attrs
+     */
+    private void initCustomAttrs(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XWaveView);
+
+        borderColor = typedArray.getColor(R.styleable.XWaveView_borderColor, borderColor);
+        waveColor = typedArray.getColor(R.styleable.XWaveView_borderColor, waveColor);
+        textColor = typedArray.getColor(R.styleable.XWaveView_borderColor, textColor);
+
+        typedArray.recycle();
     }
 
     /**
@@ -92,16 +126,16 @@ public class XWaveView extends View {
     private void initPaint() {
         circlePaint = new Paint();
         circlePaint.setAntiAlias(true);// 设置抗锯齿效果
-        circlePaint.setColor(Color.parseColor("#00FF00"));// 设置画笔颜色
+        circlePaint.setColor(borderColor);// 设置画笔颜色
         circlePaint.setStyle(Paint.Style.STROKE);// 设置画笔绘制样式为圆环
 
         wavePaint = new Paint();
         wavePaint.setAntiAlias(true);
-        wavePaint.setColor(Color.parseColor("#00FF00"));
+        wavePaint.setColor(waveColor);
 
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
-        textPaint.setColor(Color.parseColor("#008B00"));
+        textPaint.setColor(textColor);
     }
 
     @Override
