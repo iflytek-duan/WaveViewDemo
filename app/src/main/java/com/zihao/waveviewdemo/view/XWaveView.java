@@ -171,6 +171,15 @@ public class XWaveView extends View {
         // 2.绘制水波纹效果
         canvas.drawPath(getWavePath(xOffset), wavePaint);
         // 3.绘制文本
+        drawProgressText(canvas);
+    }
+
+    /**
+     * 绘制显示进度的文本
+     *
+     * @param canvas canvas
+     */
+    private void drawProgressText(Canvas canvas) {
         textPaint.setTextSize(validRadius >> 1);
         String text = progress / maxProgress + "%";
         // 测量文字长度
