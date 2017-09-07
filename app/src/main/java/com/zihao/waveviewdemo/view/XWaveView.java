@@ -46,8 +46,9 @@ public class XWaveView extends View {
      * 圆心x/y坐标点
      */
     private int centerX, centerY;
-    private int circleStrokeWidth;// 外圆线宽
     private int validRadius;// 去除线宽后的内圆有效半径
+    private int textSize;
+    private int circleStrokeWidth = 10;// 外圆线宽
 
     // 需要用到的画笔
     private Paint circlePaint;// 绘制圆环的画笔
@@ -102,6 +103,9 @@ public class XWaveView extends View {
         borderColor = Color.parseColor("#00FF00");
         waveColor = Color.parseColor("#00FF00");
         textColor = Color.parseColor("#008B00");
+
+        textSize = 12;// 默认字体大小为12px
+        circleStrokeWidth = 10;// 默认设置圆环线宽为10px
     }
 
     /**
@@ -119,6 +123,8 @@ public class XWaveView extends View {
 
         progress = typedArray.getFloat(R.styleable.XWaveView_progress, 0);
         maxProgress = typedArray.getFloat(R.styleable.XWaveView_maxProgress, maxProgress);
+        circleStrokeWidth = typedArray.getInteger(R.styleable.XWaveView_circleStrokeWidth, circleStrokeWidth);
+        textSize = typedArray.getInteger(R.styleable.XWaveView_textSize, textSize);
 
         typedArray.recycle();
     }
@@ -151,7 +157,6 @@ public class XWaveView extends View {
 
             // 计算获取外侧外圆的半径、线宽、内圆有效半径、圆心
             int circleRadius = Math.min(width, height) >> 1;// 取width/height的最小值的1/2作为半径
-            circleStrokeWidth = circleRadius / 80;// 默认设置圆环线宽为半径的1/10
             circlePaint.setStrokeWidth(circleStrokeWidth);// 设置圆环线宽
 
             validRadius = circleRadius - circleStrokeWidth;// 内圆有效半径
@@ -183,7 +188,7 @@ public class XWaveView extends View {
      * @param canvas canvas
      */
     private void drawProgressText(Canvas canvas) {
-        textPaint.setTextSize(validRadius >> 1);
+        textPaint.setTextSize(textSize);
         String text = progress / maxProgress + "%";
         // 测量文字长度
         float w1 = textPaint.measureText(text);

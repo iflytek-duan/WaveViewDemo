@@ -40,4 +40,16 @@ Android实现水波纹效果Demo
         <td>最大进度</td>
         <td>app:textColor="100"</td>
     </tr>
+    <tr>
+        <td>circleStrokeWidth</td>
+        <td>integer</td>
+        <td>外侧圆环宽度</td>
+        <td>app:circleStrokeWidth="10"</td>
+    </tr>
+    <tr>
+        <td>textSize</td>
+        <td>integer</td>
+        <td>文字大小</td>
+        <td>app:textSize="12"</td>
+    </tr>
 </table>

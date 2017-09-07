@@ -12,6 +12,10 @@
         <attr name="progress" format="float"/>
         <!--最大进度-->
         <attr name="maxProgress" format="float"/>
+        <!--外侧圆环宽度-->
+        <attr name="circleStrokeWidth" format="integer"/>
+        <!--文字大小-->
+        <attr name="textSize" format="integer"/>
     </declare-styleable>
 
 </resources>
