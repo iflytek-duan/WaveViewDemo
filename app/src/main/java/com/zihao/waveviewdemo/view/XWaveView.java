@@ -41,7 +41,7 @@ public class XWaveView extends View {
     /**
      * 当前进度、最大进度(最大进度值默认为100)
      */
-    private float progress = 55f, maxProgress = 100f;
+    private float progress = 0, maxProgress = 100f;
     /**
      * 圆心x/y坐标点
      */
@@ -116,6 +116,9 @@ public class XWaveView extends View {
         borderColor = typedArray.getColor(R.styleable.XWaveView_borderColor, borderColor);
         waveColor = typedArray.getColor(R.styleable.XWaveView_borderColor, waveColor);
         textColor = typedArray.getColor(R.styleable.XWaveView_borderColor, textColor);
+
+        progress = typedArray.getFloat(R.styleable.XWaveView_progress, 0);
+        maxProgress = typedArray.getFloat(R.styleable.XWaveView_maxProgress, maxProgress);
 
         typedArray.recycle();
     }

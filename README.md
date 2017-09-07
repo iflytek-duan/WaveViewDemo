@@ -28,4 +28,16 @@ Android实现水波纹效果Demo
         <td>进度文本颜色</td>
         <td>app:textColor="@color/text_color"</td>
     </tr>
+    <tr>
+        <td>progress</td>
+        <td>float</td>
+        <td>当前进度</td>
+        <td>app:progress="0"</td>
+    </tr>
+    <tr>
+        <td>maxProgress</td>
+        <td>float</td>
+        <td>最大进度</td>
+        <td>app:textColor="100"</td>
+    </tr>
 </table>

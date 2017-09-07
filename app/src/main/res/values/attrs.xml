@@ -8,6 +8,10 @@
         <attr name="waveColor" format="color"/>
         <!--进度文本颜色-->
         <attr name="textColor" format="color"/>
+        <!--当前进度-->
+        <attr name="progress" format="float"/>
+        <!--最大进度-->
+        <attr name="maxProgress" format="float"/>
     </declare-styleable>
 
 </resources>
