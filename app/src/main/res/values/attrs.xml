@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="XWaveView">
+    <declare-styleable name="WaveView">
         <!--圆边线颜色-->
         <attr name="borderColor" format="color"/>
         <!--水波纹颜色-->

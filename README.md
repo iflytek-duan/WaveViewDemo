@@ -32,13 +32,19 @@ Android实现水波纹效果Demo
         <td>progress</td>
         <td>float</td>
         <td>当前进度</td>
-        <td>app:progress="0"</td>
+        <td>
+            app:progress="0"</br>
+            setProgress(0);
+        </td>
     </tr>
     <tr>
         <td>maxProgress</td>
         <td>float</td>
         <td>最大进度</td>
-        <td>app:textColor="100"</td>
+        <td>
+            app:textColor="100"</br>
+            setMaxProgress(100);
+        </td>
     </tr>
     <tr>
         <td>circleStrokeWidth</td>
@@ -50,6 +56,6 @@ Android实现水波纹效果Demo
         <td>textSize</td>
         <td>integer</td>
         <td>文字大小</td>
-        <td>app:textSize="12"</td>
+        <td>app:textSize="18"</td>
     </tr>
 </table>

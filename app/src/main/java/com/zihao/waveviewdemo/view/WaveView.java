@@ -11,19 +11,20 @@ import android.graphics.RectF;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 import com.zihao.waveviewdemo.R;
 
 /**
- * ClassName：XWaveView
+ * ClassName：WaveView
  * Description：TODO<自定义水波纹视图>
  * Author：zihao
  * Date：2017/7/19 11:02
  * Email：crazy.zihao@gmail.com
  * Version：v1.0
  */
-public class XWaveView extends View {
+public class WaveView extends View {
 
     /**
      * WaveView的宽高
@@ -70,15 +71,15 @@ public class XWaveView extends View {
      */
     private boolean isDetached = false;
 
-    public XWaveView(Context context) {
+    public WaveView(Context context) {
         this(context, null);
     }
 
-    public XWaveView(Context context, @Nullable AttributeSet attrs) {
+    public WaveView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public XWaveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public WaveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -104,7 +105,7 @@ public class XWaveView extends View {
         waveColor = Color.parseColor("#00FF00");
         textColor = Color.parseColor("#008B00");
 
-        textSize = 12;// 默认字体大小为12px
+        textSize = sp2px(getContext(), 18);// 默认字体大小为18sp
         circleStrokeWidth = 10;// 默认设置圆环线宽为10px
     }
 
@@ -115,16 +116,16 @@ public class XWaveView extends View {
      * @param attrs   attrs
      */
     private void initCustomAttrs(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XWaveView);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WaveView);
 
-        borderColor = typedArray.getColor(R.styleable.XWaveView_borderColor, borderColor);
-        waveColor = typedArray.getColor(R.styleable.XWaveView_borderColor, waveColor);
-        textColor = typedArray.getColor(R.styleable.XWaveView_borderColor, textColor);
+        borderColor = typedArray.getColor(R.styleable.WaveView_borderColor, borderColor);
+        waveColor = typedArray.getColor(R.styleable.WaveView_borderColor, waveColor);
+        textColor = typedArray.getColor(R.styleable.WaveView_borderColor, textColor);
 
-        progress = typedArray.getFloat(R.styleable.XWaveView_progress, 0);
-        maxProgress = typedArray.getFloat(R.styleable.XWaveView_maxProgress, maxProgress);
-        circleStrokeWidth = typedArray.getInteger(R.styleable.XWaveView_circleStrokeWidth, circleStrokeWidth);
-        textSize = typedArray.getInteger(R.styleable.XWaveView_textSize, textSize);
+        progress = typedArray.getFloat(R.styleable.WaveView_progress, 0);
+        maxProgress = typedArray.getFloat(R.styleable.WaveView_maxProgress, maxProgress);
+        circleStrokeWidth = typedArray.getInteger(R.styleable.WaveView_circleStrokeWidth, circleStrokeWidth);
+        textSize = typedArray.getInteger(R.styleable.WaveView_textSize, textSize);
 
         typedArray.recycle();
     }
@@ -189,7 +190,7 @@ public class XWaveView extends View {
      */
     private void drawProgressText(Canvas canvas) {
         textPaint.setTextSize(textSize);
-        String text = progress / maxProgress + "%";
+        String text = progress / maxProgress * 100 + "%";
         // 测量文字长度
         float w1 = textPaint.measureText(text);
         // 测量文字高度
@@ -316,5 +317,16 @@ public class XWaveView extends View {
     public void setMaxProgress(float maxProgress) {
         this.maxProgress = maxProgress;
         invalidate();
+    }
+
+    /**
+     * sp转px
+     *
+     * @param context context
+     * @param spValue spValue
+     * @return pxValue
+     */
+    public static int sp2px(Context context, float spValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, context.getResources().getDisplayMetrics());
     }
 }
